@@ -89,19 +89,20 @@ p.titulos{
 .submit-button{
     transition: all 0.3s ease 0s;
     margin-top: 15px;
-	background-color: #C80697;
+	background-color:  #291063;
 	border-radius: 0.5em;
 	border: none;
 	padding: 20px 40px;
 	font-size: 18pt;
+    color: white;
 	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 	cursor: pointer;
 	outline: none;
 	}
     .submit-button:hover {
-	background-color: #ffaa29;
+	background-color: rgb(216, 157, 68);
 	box-shadow: 0px 15px 20px rgba(121, 121, 121, 0.4);
-	color:black;
+	color:rgb(160, 103, 18);
 	transform: translateX(-7px);
   }
   div.error_messages{

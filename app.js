@@ -9,6 +9,8 @@ var validator = require('express-validator');
 var methodOverride = require('method-override');
 var session = require('express-session');
 
+var sessionData = require(path.join(__dirname, 'src/middlewares', 'sessionData.js'));
+
 var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
 var ligasRouter = require('./src/routes/ligas');
@@ -27,8 +29,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
+app.use(session({
+  secret: 'lairdApp',
+  resave: true,
+  saveUninitialized: true
+}));
 
-
+app.use(sessionData);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

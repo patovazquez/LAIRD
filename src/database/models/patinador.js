@@ -14,7 +14,8 @@ module.exports = function(sequelize, DataTypes) {
         ref: DataTypes.STRING,
         coach:DataTypes.STRING,
         avatar:DataTypes.STRING,
-        tipe:DataTypes.STRING,        
+        tipe:DataTypes.STRING,   
+        permission:DataTypes.STRING,     
     },{
         underscored: true,
         timestamps: true,

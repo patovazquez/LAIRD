@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAIRD</title>
+</head>
+
+  <!-- header usuarios -->
+  <%- include('Partials/userHeader') %>
+  <!--fin del header usuarios -->
+    <!-- header main -->
+    <%- include('Partials/mainHeader') %>
+    <!--fin del header main -->
+  
+<body>
+    <a href="/images/res.pdf" download="/images/res.pdf">descarga</a>
+    <h3><%= liga.name %> </h3>
+
+
+    <% if (equipos.length == 0 ) { %>
+        <h1>Todavia creaste ningun Equipo</h1>
+       <% }else{ %>
+        <h1>Tus equipos</h1>
+   <% }%>
+
+   <% equipos.forEach(equipo => { %>
+    <h3><%= equipo.name %> </h3>
+    <h4><%= equipo.description %></h4>
+
+    <% }) %>    
+
+    <a href="edit/<%= liga.id %>">
+        <button class= "toDefine">Editar</button>    
+    </a>
+
+    <form action="delete/<%= liga.id %>?_method=DELETE" method="POST" enctype="multipart/form-data" id="delete">
+        <button class= "generalButton">Eliminar</a></button>
+    </form>
+
+    
+</body>
+</html>

@@ -3,6 +3,7 @@ var router = express.Router();
 const path = require('path');
 var multer  = require('multer');
 var validations = require(path.join(__dirname,'..','middlewares','validaciones.js'));
+var isLoged = require(path.join(__dirname,'..' ,'middlewares', 'isLoged.js'));
 
 //Configuracion de multer
 var storage = multer.diskStorage({
@@ -34,9 +35,17 @@ var ligasController = require(path.join(__dirname,'..','controllers','ligasContr
 /* GET todas las ligas */
 router.get('/', ligasController.index)
 router.get('/register', ligasController.register)
+router.get('/login', ligasController.login);
+router.get('/myPanel', ligasController.myPanel);
+router.get('/edit/:id',isLoged, ligasController.edit);
+router.get('/detail/:ligaId', ligasController.detail);
 
 
 /* rutas POST */
-router.post('/register', upload.single('liga_img'),validations.register,ligasController.processRegister);
+router.post('/register', upload.single('liga_img'),validations.register, ligasController.processRegister);
+router.put('/edit/:id', upload.single('liga_img'),validations.editLiga, ligasController.update);
+router.delete('/delete/:id'/*agregar midl para seguridad*/, ligasController.destroy); 
+router.post('/',validations.login,ligasController.processLogin);
+router.post('/logout',ligasController.logout);
 
 module.exports = router;

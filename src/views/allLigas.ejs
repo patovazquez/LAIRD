@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/all-ligas.css">
+    <title>LAIRD</title>
+</head>
+
+<!-- header usuarios -->
+<%- include('Partials/userHeader') %>
+    <!--fin del header usuarios -->
+    <!-- header main -->
+    <%- include('Partials/mainHeader') %>
+        <!--fin del header main -->
+
+
+        <body>
+            <!--inicio todas las ligas -->
+
+            <h1>Todas las ligas</h1>
+
+            <section class="grid-container">
+                <% ligas.forEach(liga=> { %>
+                    <a href="ligas/detail/<%= liga.id %>">
+                        <article>
+                            <img id="myImgliga" src="/images/ligas/<%= liga.image %>" class="imgLigas" alt="Logo LIGA">
+                            <div class="data">
+                                <h3>
+                                    <%= liga.name %>
+                                </h3>
+                                <h4>
+                                    <%= liga.province %>
+                                </h4>
+                                <h4>
+                                    <%= liga.tipe %>
+                                </h4>
+                            </div>
+                        </article>
+                    </a>
+
+                    <% }) %>
+
+            </section>
+
+
+            <!--fin todas las ligas  -->
+
+
+        </body>
+
+</html>

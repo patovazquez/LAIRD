@@ -33,7 +33,7 @@ module.exports = {
         .isLength({ min: 8 })
         .withMessage("La contraseña debe tener 8 caracteres como minimo"),
 
-        body('user_img')
+        body('liga_img')
         .custom((value,{req}) => req.file) //Si no existe req.file la verificacion no va a pasar
         .withMessage("La imagen no es valida o no se ha elegido ninguna"),
 
@@ -47,7 +47,7 @@ module.exports = {
 
     ],
 
-    /*login:[
+    login:[
 
         body('email')
         .isEmail(),
@@ -56,16 +56,12 @@ module.exports = {
         .isLength({ min: 8 })
 
     ],
-    editUser: [       
+    editLiga: [       
 
-        body('first_name')
+        body('name')
         .isLength({ min: 2 })
         .withMessage("El campo de nombre debe tener 2 caracteres como minimo"),
-
-        body('last_name').
-        isLength({ min: 2 })
-        .withMessage("El campo de apellido debe tener 2 caracteres como minimo"),
-        
+      
         body('email')
         .isEmail()
         .withMessage("Ingrese un email valido"),
@@ -74,7 +70,7 @@ module.exports = {
         .isLength({ min: 8 })
         .withMessage("La contraseña debe tener 8 caracteres como minimo"),
 
-        body('user_img')
+        body('liga_img')
         .custom((value,{req}) => req.file) //Si no existe req.file la verificacion no va a pasar
         .withMessage("La imagen no es valida o no se ha elegido ninguna"),
 
@@ -87,7 +83,7 @@ module.exports = {
         })
 
     ],
-    product:[
+    /*product:[
         body('title')
         .isLength({ min: 2 })
         .withMessage("El campo de nombre debe tener 2 caracteres como minimo"),
