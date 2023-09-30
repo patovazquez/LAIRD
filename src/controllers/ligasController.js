@@ -22,24 +22,24 @@ module.exports = {
 
   },
 
-  detail: async (req,res)=>{
+  detail: async (req, res) => {
     let id = (req.params.ligaId);
     console.log(id)
-    try{
-        let unaLiga = await db.Liga.findByPk(id);
-        
-        if(unaLiga == null){
-            res.send("404 not found")
-        }else{
-        res.render('ligaDetail', { unaLiga });
-        }
-        //console.log(unaLiga)
-    }catch(error){
-        res.send(error);
-    }
-    
+    try {
+      let unaLiga = await db.Liga.findByPk(id);
 
-    },
+      if (unaLiga == null) {
+        res.send("404 not found")
+      } else {
+        res.render('ligaDetail', { unaLiga });
+      }
+      //console.log(unaLiga)
+    } catch (error) {
+      res.send(error);
+    }
+
+
+  },
 
   register: (req, res, next) => {
 
@@ -132,7 +132,11 @@ module.exports = {
 
     if (req.session.ligaId) {
       try {
-        let equipos = await db.Equipo.findAll({ where: { created_by: req.session.ligaId } })
+        let equipos = await db.Equipo.findAll({
+          where: { created_by: req.session.ligaId },
+          attributes: ['name', 'category', 'description']
+        });
+
         let liga = await db.Liga.findByPk(req.session.ligaId)
 
         res.render('myPanelLiga', { equipos: equipos, liga })

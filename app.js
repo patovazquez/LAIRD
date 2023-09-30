@@ -14,6 +14,7 @@ var sessionData = require(path.join(__dirname, 'src/middlewares', 'sessionData.j
 var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
 var ligasRouter = require('./src/routes/ligas');
+var eventosRouter = require('./src/routes/eventos');
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use(sessionData);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/ligas', ligasRouter);
+app.use('/eventos', eventosRouter);
 
 
 

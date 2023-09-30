@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/all-ligas.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>LAIRD</title>
+</head>
+
+<!-- header usuarios -->
+<%- include('Partials/userHeader') %>
+    <!--fin del header usuarios -->
+    <!-- header main -->
+    <%- include('Partials/mainHeader') %>
+        <!--fin del header main -->
+
+
+        <body>
+            <!--inicio todos los eventos -->
+
+            <h1>Proximos Eventos</h1>
+
+
+
+            <section class="grid-container">
+
+
+                <% mesesOrdenados.forEach(mes=> { %>
+                    
+
+                    <% if (mes.eventos.length> 0) { %>
+                <div class="eventosDiv">
+                        <h3>
+                            <%= mes.nombre %>
+                        </h3>
+
+                        <% mes.eventos.forEach(evento=> { %>
+
+                            <article>
+                                <div class="fechas">
+                                    <span class="span-ligas" id="fecha">
+                                        <%= evento.startdate %> AL <%= evento.finishdate %>
+                                    </span>
+                                </div>
+                                <a href="eventos/detail/<%= evento.id %>">
+                                    <div class="logo-articulo">
+                                        <img id="myImgliga" src="/images/eventos/<%= evento.poster %>" class="imgLigas"
+                                            alt="Poster Evento">
+                                    </div>
+                                </a>
+                                <div class="data">
+                                    <span class="span-ligas" id="name">
+                                        <%= evento.name %>
+                                    </span>
+                                    <span class="span-ligas">
+                                        Provincia: <%= evento.province %>
+                                    </span>
+                                    <span class="span-ligas">
+                                        Tipo de Evento: <%= evento.tipe %>
+                                    </span>
+                                    <span class="span-ligas">
+                                        Organiza: <%= evento.Liga.name %>
+                                    </span>
+
+
+                                    <div class="botones">
+                                        <button class="button-all-ligas">Mas INFO</button>
+                                    </div>
+                                </div>
+                                
+                            </article>
+                        <% }) %>
+
+                    <% } else { %>
+                        <div class="noEventosDiv">
+                        <h3>
+                            <%= mes.nombre %>
+                        </h3>
+                         <span class="span-no-evento">No hay eventos registrados</span>
+                        </div>
+                <% } %>                             
+                                
+                </div>
+
+                <% }) %>
+
+
+
+            </section>
+
+
+            <!--fin todos los eventos  -->
+
+
+        </body>
+
+</html>

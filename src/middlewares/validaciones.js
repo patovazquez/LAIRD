@@ -19,11 +19,7 @@ module.exports = {
 
         body('name')
         .isLength({ min: 2 })
-        .withMessage("El campo de nombre debe tener 2 caracteres como minimo"),
-
-        /*body('last_name').
-        isLength({ min: 2 })
-        .withMessage("El campo de apellido debe tener 2 caracteres como minimo"),*/
+        .withMessage("El campo de nombre debe tener 2 caracteres como minimo"),        
         
         body('email')
         .isEmail()

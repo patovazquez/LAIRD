@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/mainHeader.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <title>MainHeader</title>
 </head>
+
 <body>
 
     <div class="headerMain">
         <ul>
             <li><a href="/ligas">Ligas</a></li>
             <li><a href="">Equipos</a></li>
-            <li><a href="">Eventos</a></li>
+            <li><a href="/eventos">Eventos</a></li>
             <li><a href="">Noticias</a></li>
             <li><a href="">Ventas</a></li>
             <li><a href="">Oficiales</a></li>
             <li><a href="">Selecciones</a></li>
             <li><a href="">Mira Derby</a></li>
             <li><a href="">Stats</a></li>
-            <% if (permiso == 'liga') { %>
-            <div class= "logeado">
-                <li><a href="/ligas/mypanel">Mi Panel</a></li>     
-                <form action="/ligas/logout" method="POST" id="logout">
-                    <button type="submit" class= "logoutButton">LogOut</button> 
-                </form>
-            </div>
-            <% } %>
+            <% if (permiso=='liga' ) { %>
+                <div class="logeado">
+                    <li><a href="/ligas/mypanel">Mi Panel</a></li>
+                    <form action="/ligas/logout" method="POST" id="logout">
+                        <button type="submit" class="logoutButton">LogOut</button>
+                    </form>
+                </div>
+                <% } %>
         </ul>
 
     </div>
 
-    
+
 </body>
+
 </html>

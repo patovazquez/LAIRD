@@ -1,0 +1,9 @@
+.mi-icono {
+    font-size: 1rem; /* Cambiar el tamaño del icono */
+    color: rgb(105, 0, 190); /* Cambiar el color del icono */
+    padding: 3px;
+    margin: 5px;
+    border-color: rgb(255, 214, 101);
+    border-radius: 3px;
+    background-color: white;
+  }
