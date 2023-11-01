@@ -37,15 +37,17 @@ router.get('/', ligasController.index)
 router.get('/register', ligasController.register)
 router.get('/login', ligasController.login);
 router.get('/myPanel', ligasController.myPanel);
-router.get('/edit/:id',isLoged, ligasController.edit);
+router.get('/edit/:id',isLoged.preventEditLiga, ligasController.edit);
 router.get('/detail/:ligaId', ligasController.detail);
 
 
 /* rutas POST */
 router.post('/register', upload.single('liga_img'),validations.register, ligasController.processRegister);
 router.put('/edit/:id', upload.single('liga_img'),validations.editLiga, ligasController.update);
-router.delete('/delete/:id'/*agregar midl para seguridad*/, ligasController.destroy); 
+router.delete('/delete/:id'/*agregar midl para seguridad*/, ligasController.destroy);  
 router.post('/',validations.login,ligasController.processLogin);
 router.post('/logout',ligasController.logout);
+router.post('/desactivar/:ligaId', ligasController.desactivar);
+router.post('/activar/:ligaId', ligasController.activar);
 
 module.exports = router;

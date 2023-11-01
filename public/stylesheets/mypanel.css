@@ -1,9 +1,119 @@
+.my-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bienvenido {
+  text-transform: capitalize;
+  font-size: 36px;
+  font-weight: 600;
+  text-align: left;
+  color: grey;
+
+}
+
+span {
+  color: grey;
+}
+
+p {
+  color: grey;
+  font-size: 20px;
+}
+
 .mi-icono {
-    font-size: 1rem; /* Cambiar el tamaño del icono */
-    color: rgb(105, 0, 190); /* Cambiar el color del icono */
-    padding: 3px;
-    margin: 5px;
-    border-color: rgb(255, 214, 101);
-    border-radius: 3px;
-    background-color: white;
-  }
+  font-size: 1.2rem;
+  /* Cambiar el tamaño del icono */
+  color: rgb(105, 0, 190);
+  /* Cambiar el color del icono */
+  padding: 3px;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  border-color: rgb(142, 101, 255);
+  border-radius: 3px;
+  background-color: white;
+}
+
+#activo {
+  color: rgb(28, 168, 0);
+  /* Cambiar el color del icono */
+}
+
+#desactivo {
+  color: rgb(168, 0, 0);
+  /* Cambiar el color del icono */
+}
+
+.logo-articulo {
+  max-height: 240px;
+  height: 62vw;
+  margin-bottom: 10px;
+}
+
+.imgLigas {
+  max-width: 230px;
+  width: 62vw;
+  padding: 5px;
+}
+
+.logo-articulo {
+  max-height: 260px;
+  height: 62vw;
+  margin-left: auto;
+}
+
+.miliga-container {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 15px;
+  /*background-image: linear-gradient(to bottom right,#3B0066,#234BA6, #3D8BE3, #18A6F4,#9B47B7);*/
+  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+  /*background-color: #d4b0ee;*/
+  box-shadow: 0px 15px 20px -3px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  margin: 1%;
+  padding: 1%;
+}
+
+.botonera {
+  display: flex;
+  flex-direction: column;
+}
+
+#en-linea {
+  flex-direction: row;
+  margin-left: auto;
+}
+
+#liga {
+  background-image: none;
+  background-color: #7954ce;
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+}
+
+#toast-container {
+  position: fixed;
+  background-color: #333;
+  color: #fff;
+  padding: 30px;
+  margin: 10px;
+  border-radius: 5px;
+  display: none;
+  top: 50%;
+  /* Alinea verticalmente al centro de la pantalla */
+  left: 50%;
+  /* Alinea horizontalmente al centro de la pantalla */
+  transform: translate(-50%, -50%);
+  /* Centra el contenido */
+  max-width: 200px;
+  max-height: 50px;
+ 
+}
+
+.hidden {
+  display: none;
+}

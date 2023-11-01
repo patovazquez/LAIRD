@@ -14,12 +14,12 @@ form.addEventListener("submit", function(event){
 
 function checkSelect(){
     if(select.value === "default" ){
-        setError(select, 'Seleccione tipo de Liga')
+        setError(select, 'Seleccione tipo de Liga / evento / mes')
     }else{
         setSucces(select)
     }
 
-}
+} 
 
 function setError(input, message){
     let small = document.getElementById("user-mesage")

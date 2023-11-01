@@ -24,7 +24,7 @@
                 <div class="picture">
                    
                 </div>            
-            <p class='titulos'>Crear Evento</p>            
+            <p class='titulos'>EDITA el Evento</p>            
             </div>
 
                 
@@ -41,9 +41,9 @@
 
                 </div>                           
                                        
-                    <input class="input-decoration" type="text" placeholder="Nombre" name="name" <% if (typeof(old) != 'undefined') { %> value= <%= old.name %> <%} %>>
+                    <input class="input-decoration" type="text" placeholder="Nombre" name="name" value= "<%= unEvento.name %>">
                     <select name="tipe" class="input-decoration" id= 'tipeUsers'>
-                        <option value="default" selected disabled onchange="setSucces()">Tipo de Evento</option>
+                        <option value="default" selected disabled onchange="setSucces()"><%= unEvento.tipe %></option>
                         <option value="Bout">Bout</option>
                         <option value="Scremmage">Scremmage</option>
                         <option value="Triangular">Triangular</option>                        
@@ -54,21 +54,21 @@
                     </select>   
                     <div class="description_box">
                         <label for="" class="label_decoration">Presentación / Resumen:</label>
-                       <textarea name="resume" id="" cols="30" rows="5" placeholder="Contanos Breve, en 5 lineas, de que se trata el evento"><% if (typeof(old) != 'undefined') { %> <%= old.resume %> <%} %></textarea>        
+                       <textarea name="resume" id="" cols="30" rows="5" placeholder="Contanos Breve, en 5 lineas, de que se trata el evento"><%= unEvento.resume %></textarea>        
                      </div>
                     
                     <div class="description_box">
                         <label for="" class="label_decoration">Descripción:</label>
-                       <textarea name="description" id="" cols="30" rows="10" placeholder="Aqui desarrolla todo lo que desees agregar sobre el evento"><% if (typeof(old) != 'undefined') { %> <%= old.description %> <%} %></textarea>        
+                       <textarea name="description" id="" cols="30" rows="10" placeholder="Aqui desarrolla todo lo que desees agregar sobre el evento"><%= unEvento.description %></textarea>        
                      </div>
 
                      <div class="description_box">
                         <label for="" class="label_decoration">INFO Importante:</label>
-                       <textarea name="info" id="" cols="15" rows="3" placeholder="Agrega la informacion importante: se paga entrada ? se suspende por lluvia? habra comida?"><% if (typeof(old) != 'undefined') { %> <%= old.info %> <%} %></textarea>        
+                       <textarea name="info" id="" cols="15" rows="3" placeholder="Agrega la informacion importante: se paga entrada ? se suspende por lluvia? habra comida?"><%= unEvento.info %></textarea>        
                      </div>
                     
                     <select name="province" class="input-decoration" id= 'province'>
-                        <option value="default">Seleccione la provincia</option>
+                        <option value="default"><%= unEvento.province %></option>
                         <option value="CABA">CABA</option>
                         <option value="Buenos Aires">Buenos Aires</option>
                         <option value="Catamarca">Catamarca</option> 
@@ -94,16 +94,16 @@
                         <option value="Tierra del Fuego">Tierra del Fuego</option> 
                         <option value="Tucuman">Tucumán</option> 
                         </select>
-                        <input class="input-decoration" type="text" placeholder="Ciudad" name="city" <% if (typeof(old) != 'undefined') { %> value= <%= old.city %> <%} %>>
-                        <input class="input-decoration" type="text" placeholder="Direccion" name="adress" <% if (typeof(old) != 'undefined') { %> value= <%= old.adress %> <%} %>>
-                        <input class="input-decoration" type="text" placeholder="Lugar- Pista - Club" name="place" <% if (typeof(old) != 'undefined') { %> value= <%= old.place %> <%} %>>
-                        <input class="input-decoration" type="text" placeholder="HORARIOS" name="schedules" <% if (typeof(old) != 'undefined') { %> value= <%= old.schedules %> <%} %>>
+                        <input class="input-decoration" type="text" placeholder="Ciudad" name="city" value = "<%= unEvento.city %>"> 
+                        <input class="input-decoration" type="text" placeholder="Direccion" name="adress" value = "<%= unEvento.adress %>">
+                        <input class="input-decoration" type="text" placeholder="Lugar- Pista - Club" name="place" value = "<%= unEvento.place %>">
+                        <input class="input-decoration" type="text" placeholder="HORARIOS" name="schedules" value = "<%= unEvento.schedules %>">
                         <label for="Date">Fecha de Inicio</label>
                         <input type="date" name="startdate" id="startdate" placeholder="Selecciona una fecha">
                         <label for="Date">Fecha de FIN</label>
                         <input type="date" name="finishdate" id="finishdate" placeholder="Selecciona una fecha">
                         <select name="month" class="input-decoration" id= 'province'> 
-                            <option value="default" selected disabled onchange="setSucces()">Seleccione el mes</option>
+                            <option value="default"><%= unEvento.month %></option>
                             <option value="Enero">Enero</option>
                             <option value="Febrero">Febrero</option>
                             <option value="Marzo">Marzo</option> 
@@ -118,10 +118,10 @@
                             <option value="Diciembre">Diciembre</option>
                         </select> 
 
-                        <input class="input-decoration" type="text" placeholder="Link para Oficiar" name="link_officiate" <% if (typeof(old) != 'undefined') { %> value= <%= old.link_officiate %> <%} %>>
-                        <input class="input-decoration" type="text" placeholder="Link para Voluntarios" name="link_enroll" <% if (typeof(old) != 'undefined') { %> value= <%= old.link_enroll %> <%} %>>
-                        <input class="input-decoration" type="text" placeholder="Link de inscripción para Equipos - Patinadores" name="link_participate" <% if (typeof(old) != 'undefined') { %> value= <%= old.link_participate %> <%} %>>
-                        <input class="input-decoration" type="text" placeholder="/instagram" name="link_insta" <% if (typeof(old) != 'undefined') { %> value= <%= old.link_insta %> <%} %>>
+                        <input class="input-decoration" type="text" placeholder="Link para Oficiar" name="link_officiate" value = "<%= unEvento.link_officiate %>">
+                        <input class="input-decoration" type="text" placeholder="Link para Voluntarios" name="link_enroll" value = "<%= unEvento.link_enroll %>">
+                        <input class="input-decoration" type="text" placeholder="Link de inscripción para Equipos - Patinadores" name="link_participate"  value = "<%= unEvento.link_participate %>">
+                        <input class="input-decoration" type="text" placeholder="/instagram" name="link_insta" value = "<%= unEvento.link_insta %>">
                          
                         <div class= "avatar">
                             <label for="" class="label_decoration">POSTER DEL EVENTO</label>

@@ -1,54 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LAIRD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/stylesheets/myPanel.css">
+    <script src="/js/alerts.js"></script>
 </head>
 
-  <!-- header usuarios -->
-  <%- include('Partials/userHeader') %>
-  <!--fin del header usuarios -->
+<!-- header usuarios -->
+<%- include('Partials/userHeader') %>
+    <!--fin del header usuarios -->
     <!-- header main -->
     <%- include('Partials/mainHeader') %>
-    <!--fin del header main -->
-  
-<body>
-    <a href="/images/res.pdf" download="/images/res.pdf">descarga</a> <!--eliminar esto lo use de prueba para el atr DOWNLOAD despues lo uso para los recursos -->
-    <h3><%= liga.name %> </h3>
+        <!--fin del header main -->
 
-    <button class="mi-icono"><i class="fas fa-trash"></i></button>
-    <button class="mi-icono"><i class="fas fa-pencil-alt"></i></button>
-    <button class="mi-icono"><i class="fas fa-eye"></i></button>
+        <body>
+            <div class=my-panel>
+                <div class=miliga-container>
+                    <div>
+                        <h2 id="bienvenido">Bienvenid@ <%= liga.name %>
+                        </h2>
+                        <p class="p-miliga">
+                            En esta sección vas a poder trabajar con tu contenido, tus equipos,
+                            tus rosters, tus noticias y tus eventos.
+                        </p>
+                        <div class=botonera>
+                            <span>Para editar usa -------<button class="mi-icono"><i
+                                        class="fas fa-pencil-alt"></i></button>
+                            </span>
+                            <span>Para ver usa ----------<button class="mi-icono"><i class="fas fa-eye"></i></button>
+                            </span>
+                            <span>Para eliminar usa ----<button class="mi-icono"><i class="fas fa-trash"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="logo-articulo">
+                        <img id="myImgliga" src="/images/ligas/<%= liga.image %>" class="imgLigas" alt="Logo LIGA">
+                    </div>
+                </div>
+
+                <div class=miliga-container id="liga">
+                    <h3>Control general de <%= liga.name %>
+                    </h3>
+                    <div class=botonera id="en-linea">
+                        <span><a href="edit/<%= liga.id %>"><button class="mi-icono"><i
+                                        class="fas fa-pencil-alt"></i></button></a></span>
+
+                        <span><a href="/ligas/detail/<%= liga.id %>"><button role="link" class="mi-icono"><i
+                                        class="fas fa-eye"></i></button></a></span>
+
+                        <div id="toast-container" class="hidden">Liga activada correctamente</div>
+
+                        <form action="activar/<%= liga.id %>" method="POST" id="active">
+                            <input type="hidden" name="nuevaCondicion" value="activa">
+                            <span><button class="mi-icono" id="activo" title="Activar Liga"><i
+                                        class="fa fa-chevron-circle-down"></i></button></span>
+                        </form>
+
+                        <form action="desactivar/<%= liga.id %>" method="POST" id="deactive">
+                            <input type="hidden" name="nuevaCondicion" value="inactiva">
+                            <span><button class="mi-icono" id="desactivo" title="Desactivar Liga"><i
+                                        class="fa fa-times-circle"></i></button></span>
+                        </form>
 
 
-    <% if (equipos.length == 0 ) { %>
-        <h1>Todavia creaste ningun Equipo</h1>
-       <% }else{ %>
-        <h1>Tus equipos</h1>
-   <% }%>
+                    </div>
+                </div>
 
-   <% equipos.forEach(equipo => { %>
-    <h3><%= equipo.name %> </h3>
-    <h4><%= equipo.description %></h4>
+                <% if (equipos.length==0 ) { %>
+                    <h1>Todavia creaste ningun Equipo</h1>
+                    <% }else{ %>
+                        <h1>Tus equipos</h1>
+                        <% }%>
+                            <% equipos.forEach(equipo=> { %>
+                                <h3>
+                                    <%= equipo.name %>
+                                </h3>
+                                <h4>
+                                    <%= equipo.description %>
+                                </h4>
+                                <% }) %>
 
-    <% }) %>    
 
-    <a href="edit/<%= liga.id %>">
-        <button class= "toDefine">Editar</button>    
-    </a>
+                                    <% if (eventos.length==0 ) { %>
+                                        <h1>Todavia creaste ningun Evento</h1>
+                                        <% }else{ %>
+                                            <h1>Tus Eventos</h1>
+                                            <% }%>
+                                                <% eventos.forEach(evento=> { %>
+                                                    <h3>
+                                                        <%= evento.name %>
+                                                    </h3>
+                                                    <a href="/eventos/edit/<%= evento.id %>"><button
+                                                            class="toDefine">EDITAR</button></A>
+                                                    <% }) %>
 
-    <form action="delete/<%= liga.id %>?_method=DELETE" method="POST" enctype="multipart/form-data" id="delete">
-        <button class= "generalButton">Eliminar</a></button>
-        <!--<button class="mi-icono"><i class="fas fa-trash"></i></button>-->
-    </form>
 
-    <a href="../eventos/register">
-        <button class= "toDefine">CREAR EVENTO</button>    
-    </a>
 
-    
-</body>
+                                                        <!--Este form es para eliminar una liga completamente antes de dar de alta solucionar la eliminacion con otra informacion creada como eventos o equipos
+                                    <form action="delete/<%= liga.id %>?_method=DELETE" method="POST"
+                                        enctype="multipart/form-data" id="delete">
+                                        <button class="generalButton">Eliminar</button>
+                                        
+                                    </form>
+  -->
+
+                                                        <a href="../eventos/register">
+                                                            <button class="toDefine">CREAR EVENTO</button>
+                                                        </a>
+
+                                                        <a href="/images/res.pdf"
+                                                            download="/images/res.pdf">descarga</a>
+                                                        <!--eliminar esto lo use de prueba para el atr DOWNLOAD despues lo uso para los recursos -->
+
+
+            </div>
+        </body>
+
 </html>

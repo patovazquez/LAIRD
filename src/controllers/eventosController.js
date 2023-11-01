@@ -24,7 +24,10 @@ module.exports = {
           {
             model: db.Liga, // Nombre del modelo Liga
             as: 'Liga', // Alias para la relación (definido en el modelo de Evento)
-            attributes: ['name'] // Columnas que deseas traer de la tabla Liga
+            attributes: ['name'], // Columnas que deseas traer de la tabla Liga
+            where: {
+              condition: 'activa' // Agrega la condición para la columna 'condition' de la tabla Liga
+            }
           }
         ]
       });
@@ -94,6 +97,11 @@ module.exports = {
   processRegister: async (req, res, next) => {
 
     const errors = validationResult(req);
+    const defaultPoster = 'proximamente.jpg'; // Reemplaza el poster con la imagne prox
+
+    // Verifica si req.file está definido
+    const poster = req.file ? req.file.filename : defaultPoster;
+
 
     if (!errors.isEmpty()) {
 
@@ -116,7 +124,7 @@ module.exports = {
         startdate: req.body.startdate,
         finishdate: req.body.finishdate,
         month: req.body.month,
-        poster: req.file.filename,
+        poster: poster,
         link_officiate: req.body.link_officiate,
         link_enroll: req.body.link_enroll,
         link_participate: req.body.link_participate,
@@ -133,5 +141,24 @@ module.exports = {
     return res.redirect('/eventos');
 
   },
+
+  edit: async (req, res) => {
+
+    try {
+      
+      const unEvento = await db.Evento.findByPk(req.params.id)
+
+      res.render('eventoEdit', { unEvento: unEvento })
+
+    } catch (error) {
+      res.send(error);
+    }
+  },
+
+  update: async (req, res) => {
+
+    res.redirect('/ligas/mypanel');
+    }
+
 
 }

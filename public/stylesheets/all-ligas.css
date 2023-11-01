@@ -111,6 +111,7 @@ p{
     border: 2px solid rgb(255, 242, 185);
     padding: 10px;
     border-radius: 5px;
+    background-color: #fffdf5
 }
 .noEventosDiv{
     display: flex;
@@ -118,6 +119,7 @@ p{
     border: 2px solid rgb(220, 179, 253);
     padding: 7px;
     border-radius: 5px;
+    background-color: #fdf7fd
 }
 
 .span-no-evento{

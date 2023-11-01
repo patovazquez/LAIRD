@@ -15,7 +15,7 @@ module.exports = {
                 throw new Error('El email ingresado ya se encuentra registrado');
               }
               return true;
-        }),
+        }), 
 
         body('name')
         .isLength({ min: 2 })
@@ -66,9 +66,9 @@ module.exports = {
         .isLength({ min: 8 })
         .withMessage("La contraseña debe tener 8 caracteres como minimo"),
 
-        body('liga_img')
-        .custom((value,{req}) => req.file) //Si no existe req.file la verificacion no va a pasar
-        .withMessage("La imagen no es valida o no se ha elegido ninguna"),
+        body('liga_img'), /*en la validacion edit desactivo esta validacion para que quede guardada la imagen anterior*/
+        //.custom((value,{req}) => req.file) //Si no existe req.file la verificacion no va a pasar
+        //.withMessage("La imagen no es valida o no se ha elegido ninguna"),
 
         body('passwordCheck').
         custom((value,{req}) => {

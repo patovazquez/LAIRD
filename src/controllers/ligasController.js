@@ -11,7 +11,9 @@ module.exports = {
   index: async (req, res, next) => {
 
     try {
-      let ligas = await db.Liga.findAll();
+      let ligas = await db.Liga.findAll({
+        where: { condition: 'activa' }
+      });
 
       res.render('allLigas', { ligas: ligas });
 
@@ -72,6 +74,8 @@ module.exports = {
         permission: "liga",
       });
       console.log(req.body)
+
+      req.session.destroy(); //eliminar session si estaban logeados con otro liga y se registran
 
     } catch (error) {
       res.send(error)
@@ -137,9 +141,14 @@ module.exports = {
           attributes: ['name', 'category', 'description']
         });
 
+        let eventos = await db.Evento.findAll({
+          where: { created_by: req.session.ligaId },
+          attributes: ['id', 'name', 'created_by']
+        });
+
         let liga = await db.Liga.findByPk(req.session.ligaId)
 
-        res.render('myPanelLiga', { equipos: equipos, liga })
+        res.render('myPanelLiga', { equipos: equipos, eventos: eventos, liga })
       } catch (error) {
         res.send(error);
       }
@@ -223,6 +232,39 @@ module.exports = {
 
     res.redirect('/');
 
+  },
+  desactivar: async (req, res) => {
+    try {
+      const ligaId = req.params.ligaId;
+      const nuevaCondicion = req.body.nuevaCondicion;
+
+      await db.Liga.update({ condition: nuevaCondicion }, {
+        where: {
+          id: ligaId
+        }
+      });
+
+      res.redirect(`/ligas`);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: 'Error al cambiar la condición' });
+    }
+  },
+  activar: async (req, res) => {
+    try {
+      const ligaId = req.params.ligaId;
+      const nuevaCondicion = req.body.nuevaCondicion;
+
+      await db.Liga.update({ condition: nuevaCondicion }, {
+        where: {
+          id: ligaId
+        }
+      });
+      res.redirect(`/ligas`);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: 'Error al cambiar la condición' });
+    }
   }
 
 

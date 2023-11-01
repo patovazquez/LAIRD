@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 var multer  = require('multer');
-var validations = require(path.join(__dirname,'..','middlewares','validaciones.js'));
+const validacionesEvento = require('../middlewares/validacionesEvento');
 var isLoged = require(path.join(__dirname,'..' ,'middlewares', 'isLoged.js'));
 
 //Configuracion de multer
@@ -33,9 +33,11 @@ var eventosController = require(path.join(__dirname,'..','controllers','eventosC
 
 router.get('/', eventosController.index)
 router.get('/register', eventosController.register)
+router.get('/edit/:id', isLoged.preventEditEvento, eventosController.edit);  
 
 /* rutas POST */
-router.post('/register', upload.single('evento_img')/*,validations.register*/, eventosController.processRegister);
+router.post('/register', upload.single('evento_img'),validacionesEvento.register, eventosController.processRegister);
+router.put('/edit/:id', upload.single('evento_img'),validacionesEvento.editEvento, eventosController.update);
 
 
 module.exports = router;
