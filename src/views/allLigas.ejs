@@ -19,7 +19,6 @@
 
         <body>
             <!--inicio todas las ligas -->
-
             <h1>Todas las ligas</h1>
 
             <section class="grid-container">
@@ -27,9 +26,10 @@
 
                     <article>
                         <a href="ligas/detail/<%= liga.id %>">
-                        <div class="logo-articulo">
-                            <img id="myImgliga" src="/images/ligas/<%= liga.image %>" class="imgLigas" alt="Logo LIGA">
-                        </div>
+                            <div class="logo-articulo">
+                                <img id="myImgliga" src="/images/ligas/<%= liga.image %>" class="imgLigas"
+                                    alt="Logo LIGA">
+                            </div>
                         </a>
                         <div class="data">
                             <span class="span-ligas" id="name">
@@ -42,24 +42,22 @@
                                 Tipo de Liga: <%= liga.tipe %>
                             </span>
                             <div class="botones">
-                            <button class="button-all-ligas" >Equipos</button>
-                            <button class="button-all-ligas" >Noticias</button>
+                                <a href="ligas/equipos/<%= liga.id %>"><button class="button-all-ligas">Equipos</button></a>
+                                <button class="button-all-ligas">Noticias</button>
                             </div>
                         </div>
                         <div>
 
                         </div>
                     </article>
-
-
                     <% }) %>
 
             </section>
-
-
             <!--fin todas las ligas  -->
-
-
         </body>
+
+        <!-- footer-->
+        <%- include('Partials/footer') %>
+            <!--fin del footer -->
 
 </html>

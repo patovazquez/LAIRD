@@ -1,8 +1,16 @@
+/*const { v4: uuidv4 } = require('uuid');  NO VOY A PODER USAR ESTO LA BASE ESTA TODA CREADA CON IDS NUMERICOS */
+
 module.exports = function(sequelize, DataTypes) {
     
     
 
     const Liga = sequelize.define('Liga',{    
+
+        /*id: {
+            type: DataTypes.STRING,
+            primaryKey: true,
+            defaultValue: () => uuidv4()
+        },*/
             
         email: DataTypes.STRING,
         password:DataTypes.STRING,

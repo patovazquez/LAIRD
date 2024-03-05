@@ -4,7 +4,7 @@ const path = require('path');
 var multer  = require('multer');
 const validacionesEvento = require('../middlewares/validacionesEvento');
 var isLoged = require(path.join(__dirname,'..' ,'middlewares', 'isLoged.js'));
-
+ 
 //Configuracion de multer
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -34,10 +34,11 @@ var eventosController = require(path.join(__dirname,'..','controllers','eventosC
 router.get('/', eventosController.index)
 router.get('/register', eventosController.register)
 router.get('/edit/:id', isLoged.preventEditEvento, eventosController.edit);  
+router.get('/detail/:eventoId', eventosController.detail); 
 
-/* rutas POST */
+/* rutas POST */ 
 router.post('/register', upload.single('evento_img'),validacionesEvento.register, eventosController.processRegister);
 router.put('/edit/:id', upload.single('evento_img'),validacionesEvento.editEvento, eventosController.update);
-
+router.delete('/delete/:id'/*agregar midl para seguridad*/, eventosController.destroy);  
 
 module.exports = router;

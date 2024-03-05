@@ -35,3 +35,4 @@ function setSucces(input){
     select.className = ""
     delete errores[input.name] 
 }
+

@@ -19,6 +19,7 @@ const Equipo = sequelize.define('Equipo', {
     contact:DataTypes.STRING,
     condition:DataTypes.STRING,
     link:DataTypes.STRING,
+    ranking: DataTypes.INTEGER,
 
 },{
     underscored: true,
@@ -30,10 +31,18 @@ const Equipo = sequelize.define('Equipo', {
 Equipo.associate = (models =>{
     Equipo.belongsTo(models.Liga,{foreignKey: 'created_by' });
 
-    Equipo.belongsToMany(models.Patinador,{
+    /*Equipo.belongsToMany(models.Patinador,{
         as: 'patinadores', //este alias me ayuda a incluir los patinadores en consultas donde aparezcan esta relacion de muchos a muchos 
         through: 'patinador_equipo'
+    });*/
+
+    Equipo.belongsToMany(models.Patinador, {        
+        through: models.PatinadorEquipo, // Usa el modelo en lugar de solo el nombre de la tabla
+        foreignKey: 'equipoId', // Asegúrate de especificar la clave foránea correcta si es necesario
+        otherKey: 'patinadorId',
+        as: 'patinadores'
     });
+    
 
 }); 
 

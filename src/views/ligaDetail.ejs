@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <title>LAIRD</title>
 </head>
+<!-- header usuarios -->
+<%- include('Partials/userHeader') %>
+    <!--fin del header usuarios -->
+    <!-- header main -->
+    <%- include('Partials/mainHeader') %>
+        <!--fin del header main -->
+
 <body>
 
+    <div class="div-container">
 
     <h3><%= unaLiga.name %> </h3>
     <h3><%= unaLiga.province %> </h3>       
     <h3><%= unaLiga.tipe %> </h3> 
+    
+</div>
 </body>
+<!-- footer-->
+<%- include('Partials/footer') %>
+<!--fin del footer -->
 </html>

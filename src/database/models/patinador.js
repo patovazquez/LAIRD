@@ -7,14 +7,15 @@ module.exports = function(sequelize, DataTypes) {
         email: DataTypes.STRING,
         password:DataTypes.STRING,
         derby_name:DataTypes.STRING,
-        number:DataTypes.INTEGER,
+        number:DataTypes.STRING,
         pronoun:DataTypes.STRING,
         province:DataTypes.STRING,
         play:DataTypes.STRING,
         ref: DataTypes.STRING,
         coach:DataTypes.STRING,
+        volun:DataTypes.STRING,
         avatar:DataTypes.STRING,
-        tipe:DataTypes.STRING,   
+        condition:DataTypes.STRING,   
         permission:DataTypes.STRING,     
     },{
         underscored: true,
@@ -26,8 +27,14 @@ module.exports = function(sequelize, DataTypes) {
     Patinador.associate = (models=>{
         Patinador.hasMany(models.Venta, {foreignKey: 'created_by' })
 
-        Patinador.belongsToMany(models.Equipo, {
+        /*Patinador.belongsToMany(models.Equipo, {
             through: 'patinador_equipo',
+        });*/
+
+        Patinador.belongsToMany(models.Equipo, {
+            through: models.PatinadorEquipo, // Usa el modelo en lugar de solo el nombre de la tabla
+            foreignKey: 'patinadorId', // Asegúrate de especificar la clave foránea correcta si es necesario
+            otherKey: 'equipoId'
         });
         
     }); 

@@ -1,0 +1,135 @@
+#un-solo-equipo{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.equipo-card{
+display: flex;
+flex-direction: column;
+align-items: center;
+background-color: white;
+border-radius: 25px;
+
+box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    overflow-wrap: anywhere;
+
+}
+#integrantes{
+    color: rgb(108, 83, 176);
+    font-weight: bold;
+}
+.roster th {
+    text-align: center;
+    vertical-align: middle;
+    color: rgb(170, 170, 170);
+    padding:7px;
+}
+.roster td{
+    text-align: center;
+    vertical-align: middle;
+    padding:7px;    
+}
+
+#titulos {
+    background-color: #ffffff;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;      
+}
+
+
+tr:nth-child(even) {
+    background-color: #ffffff;     
+}
+.roster {
+    width: 100%;
+    border-collapse: collapse; 
+    
+}
+
+
+.roster th i {
+    display: block; /* Asegura que el ícono se muestre en su propia línea */
+    margin-bottom: 4px; /* Ajuste el espacio entre el ícono y el texto */
+    font-size: 24px;
+    color: rgb(108, 83, 176);
+    filter: drop-shadow(0 0 30px #333);
+}
+
+.div-description{
+    border: 2px solid #ded2e6;
+    border-radius: 10px;
+    width: 95%;
+    margin: 10px;    
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-top: 1px;
+}
+
+.aches{
+    margin: 0;
+    margin-top: 5px;
+    color: rgb(65, 65, 65);
+}
+
+.data-container{
+display: flex; 
+flex-wrap: wrap;
+border: 2px solid #ded2e6;
+    border-radius: 10px;   
+    margin: 20px;    
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-top: 1px;
+
+
+}
+
+.data{
+    margin: 10px;  
+    margin-top: 3px;
+    max-width: 170px;
+}
+
+.banner{
+    background-color: rgb(94, 73, 151);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;;
+}
+
+#imgEquipos {
+    border-radius: 5px;
+    margin: 10px;
+    width: auto;
+    /*max-width: 60px;*/
+    max-height: 130px;
+    height: 100%;
+}
+
+.description{
+    max-width: 800px;
+    height: auto;
+    margin: 10px;
+
+}
+
+.roster{
+    margin: 10px;
+}
+
+.data-item{
+    margin-left: 10px;
+    
+}
+
+.data-title {
+    font-weight: bold; 
+    margin-left: 10px; 
+    font-size: 0.9em; 
+    color: #8f8143; 
+}
+

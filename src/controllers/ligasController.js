@@ -4,6 +4,8 @@ const db = require(path.join('..', 'database', 'models'));
 const { Op, where } = require('sequelize');
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
+const fechaActual = new Date();
+const moment = require('moment');
 
 
 module.exports = {
@@ -12,7 +14,12 @@ module.exports = {
 
     try {
       let ligas = await db.Liga.findAll({
-        where: { condition: 'activa' }
+
+        where: {
+          condition: 'activa',
+          tipe: { [db.Sequelize.Op.not]: 'Oficiales' }
+        }
+
       });
 
       res.render('allLigas', { ligas: ligas });
@@ -23,6 +30,27 @@ module.exports = {
 
 
   },
+  indexOficiales: async (req, res, next) => {
+
+    try {
+      let ligas = await db.Liga.findAll({
+
+        where: {
+          condition: 'activa',
+          tipe: 'Oficiales',
+        }
+
+      });
+
+      res.render('allLigas', { ligas: ligas });
+
+    } catch (error) {
+      res.send(error);
+    }
+
+
+  },
+  
 
   detail: async (req, res) => {
     let id = (req.params.ligaId);
@@ -106,13 +134,14 @@ module.exports = {
           req.session.email = ligaLogin.email;
           req.session.ligaId = ligaLogin.id;
           req.session.permiso = ligaLogin.permission;
+          req.session.patinadorId = undefined;
           //req.session.image = userLogin.image;
           //req.session.tipe = userLogin.tipe;  /*si quiero darle permisos con el middleware de permision tipe para acceder a cosas */  
 
 
           res.redirect('/'); /*tengo que terminar la vista de MI panel para crear las otras cosas */
           //res.json(ligas)
-          console.log(req.session.email, req.session.ligaId, req.session.permiso)//funcionando el session
+          console.log(req.session.email, req.session.ligaId, req.session.permiso, req.session.patinadorId)//funcionando el session
         }
 
         else {
@@ -138,12 +167,17 @@ module.exports = {
       try {
         let equipos = await db.Equipo.findAll({
           where: { created_by: req.session.ligaId },
-          attributes: ['name', 'category', 'description']
+          attributes: ['id', 'name', 'category', 'description']
         });
 
         let eventos = await db.Evento.findAll({
-          where: { created_by: req.session.ligaId },
-          attributes: ['id', 'name', 'created_by']
+          where: {
+            created_by: req.session.ligaId, startdate: {
+              [Op.gt]: fechaActual  // Utiliza el operador greater than (>) para comparar con la fecha actual
+            }
+          },
+          attributes: ['id', 'name', 'created_by', 'startdate'],
+          order: [['startdate', 'ASC']]
         });
 
         let liga = await db.Liga.findByPk(req.session.ligaId)
@@ -265,17 +299,44 @@ module.exports = {
       console.error(error);
       res.status(500).json({ success: false, message: 'Error al cambiar la condición' });
     }
-  }
+  },
 
+  equipos: async (req, res) => {
 
+    try {
+
+      let ligaId = (req.params.ligaId);
+
+      let equipos = await db.Equipo.findAll({
+
+        where: { created_by: ligaId },
+
+        include: [
+          {
+            model: db.Liga,
+            as: 'Liga', // Alias para la relación (definido en el modelo de Evento)
+            attributes: ['name'],
+            where: {
+              condition: 'activa'
+            }
+          }
+        ],
+        order: [
+          ['province', 'ASC'],
+          ['name', 'ASC']
+        ]
+      })
+      console.log(req.body)
+      res.render("equiposSearch", { equipos: equipos })
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  },
 
 
 }
-
-
-
-
-
 
 
 

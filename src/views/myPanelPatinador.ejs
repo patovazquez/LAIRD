@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/myPanel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="/js/alerts.js"></script>
+    <title>LAIRD</title>
+</head>
+<!-- header usuarios -->
+<%- include('Partials/userHeader') %>
+    <!--fin del header usuarios -->
+    <!-- header main -->
+    <%- include('Partials/mainHeader') %>
+        <!--fin del header main -->
+
+        <body>
+
+            <div class="my-panel">
+
+
+                <div class="miliga-container" id="patinador">
+                    
+                    <div>
+                        <img id="" src="/images/patinadores/<%= patinador.avatar%>" class="img-patinador" alt="avatar Patinador">
+                    </div>
+                    <h2 id="bienvenido">Bienvenid@ <%= patinador.derby_name %>
+                            #<%= patinador.number %>
+                    </h2>
+                    <h4 id="titulo-patinador" style="color: rgb(177, 177, 177)">
+                        <%= patinador.condition %>
+                </h4>
+                                
+                    
+                    <div class=botonera id="en-linea">
+                        <span><a href="edit/<%= patinador.id %>"><button class="mi-icono"><i
+                                        class="fas fa-pencil-alt" title="Editar usuario"></i></button></a></span>
+
+                        <span><a href="/users/detail/<%= patinador.id %>"><button role="link" class="mi-icono"><i
+                                        class="fas fa-eye" title="Ver usuario"></i></button></a></span>
+
+                        <div id="toast-container" class="hidden">Cuenta activada correctamente</div>
+
+                        <form action="activar/<%= patinador.id %>" method="POST" id="active">
+                            <input type="hidden" name="nuevaCondicion" value="activa">
+                            <span><button class="mi-icono" id="activo" title="Activar usuario"><i
+                                        class="fa fa-chevron-circle-down"></i></button></span>
+                        </form>
+
+                        <form action="desactivar/<%= patinador.id %>" method="POST" id="deactive">
+                            <input type="hidden" name="nuevaCondicion" value="inactiva">
+                            <span><button class="mi-icono" id="desactivo" title="Desactivar usuario"><i
+                                        class="fa fa-times-circle"></i></button></span>
+                        </form>
+
+
+                    </div>
+                </div>
+                
+
+                <section class="paneles-section">
+
+                    <div class=infos-container id="equipos">
+                        <div class="barra">                           
+                        </div>
+                        <% if (patinador.Equipos.length == 0 ) { %>
+                            <h1>Todavia no Formas parte de un equipo</h1>
+                            <% }else{ %>
+                                <h2>Tus equipos</h2>
+                                <% }%>
+                                    <% patinador.Equipos.forEach(equipo=> { %>
+                                        <div class="eventos-control">
+                                            <h3>
+                                                <%= equipo.name %>
+                                            </h3>
+                                            <% if (equipo.PatinadorEquipo) { %>
+                                                <h5>Roster: <%= equipo.PatinadorEquipo.roster ? 'Sí' : 'No' %></h5>
+                                            <% } else { %>
+                                                <h5>Información de roster no disponible.</h5>
+                                            <% } %>
+                                            
+                                            <div class=botonera id="en-linea">                                            
+                                               
+                                                <span><a href="/equipos/detail/<%= equipo.id %>"><button role="link"
+                                                    class="mi-icono"><i
+                                                        class="fas fa-eye"></i></button></a></span>
+
+                                                <% if (equipo.PatinadorEquipo.id) { %>
+                                                <form action="/users/deleteEquipo/<%= equipo.PatinadorEquipo.id %>?_method=DELETE"
+                                                    method="POST" id="delete">
+                                                    <button role="link" class="mi-icono"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </form>
+                                                <% } %>
+
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                    </div>
+
+                    <div class=infos-container id="noticias">
+                        <div class="barra">
+                            <ul>
+                                <li><a href="">VENDER</a></li>
+                                <li><a href="">HISTORIAL</a></li>
+                            </ul>
+                        </div>
+
+                        <!--
+                            <h1>Todavia no creaste ninguna venta</h1>
+                           
+                                <h2>Tus Ventas</h2>
+                               
+                        -->
+                    </div>
+                </section>
+
+                
+
+            </div>
+
+        </body>
+        <!-- footer-->
+        <%- include('Partials/footer') %>
+            <!--fin del footer -->
+
+</html>

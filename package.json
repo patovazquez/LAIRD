@@ -21,6 +21,7 @@
     "mysql2": "^3.3.1",
     "path": "^0.12.7",
     "sequelize": "^6.31.1",
-    "sequelize-cli": "^6.6.0"
+    "sequelize-cli": "^6.6.0",
+    "uuid": "^9.0.1"
   }
 }

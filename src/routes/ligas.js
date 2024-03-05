@@ -38,7 +38,8 @@ router.get('/register', ligasController.register)
 router.get('/login', ligasController.login);
 router.get('/myPanel', ligasController.myPanel);
 router.get('/edit/:id',isLoged.preventEditLiga, ligasController.edit);
-router.get('/detail/:ligaId', ligasController.detail);
+router.get('/detail/:ligaId', ligasController.detail); 
+router.get('/equipos/:ligaId', ligasController.equipos);  
 
 
 /* rutas POST */
@@ -51,3 +52,4 @@ router.post('/desactivar/:ligaId', ligasController.desactivar);
 router.post('/activar/:ligaId', ligasController.activar);
 
 module.exports = router;
+ 

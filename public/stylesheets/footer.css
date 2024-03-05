@@ -1,0 +1,33 @@
+
+.footer {
+  background-color: #160441;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0.07rem 0.3rem 0.4rem rgba(0, 0, 0, 0.2);  
+  position:relative;
+  bottom:0;
+  width: 100%;  
+  margin-top: 15px;
+ 
+  
+
+}
+
+.header_logo-imagen img {
+  height: 6rem;
+ 
+}
+
+.footer-container {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 15px;
+
+}

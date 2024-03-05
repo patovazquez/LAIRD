@@ -7,6 +7,7 @@
     <title>LAIRD</title>     
     <!-- link css -->
     <link rel="stylesheet" href="/stylesheets/forms.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
   </head>
 
@@ -20,15 +21,18 @@
    
     <section class="main-section">    
         <section class="section">
-            <div class="title">
+          
+            <div class="title">                
+                <p class='titulos'>Editar Evento</p>
                 <div class="picture">
-                   
-                </div>            
-            <p class='titulos'>EDITA el Evento</p>            
+                    <a href="/"> <img src="\images\views\lairdlogotrans.png" alt="logo" class= "logo"></a>
+                 </div> 
+                 <a href="javascript:history.back()"><button class="mi-icono"><i
+                    class="fas fa-arrow-left"></i></button></a>                
             </div>
 
                 
-            <form method="POST" class = "input-fields"action="/eventos/register" enctype="multipart/form-data" id='usersForm'>
+            <form method="POST" class = "input-fields"action="/eventos/edit/<%= unEvento.id %>?_method=PUT" enctype="multipart/form-data" id='usersForm'>
 
                 <div class="error_messages">
                     <% if (typeof(errors) != 'undefined') { %>
@@ -43,7 +47,7 @@
                                        
                     <input class="input-decoration" type="text" placeholder="Nombre" name="name" value= "<%= unEvento.name %>">
                     <select name="tipe" class="input-decoration" id= 'tipeUsers'>
-                        <option value="default" selected disabled onchange="setSucces()"><%= unEvento.tipe %></option>
+                        <option value="<%= unEvento.tipe %>"><%= unEvento.tipe %></option>
                         <option value="Bout">Bout</option>
                         <option value="Scremmage">Scremmage</option>
                         <option value="Triangular">Triangular</option>                        
@@ -68,7 +72,7 @@
                      </div>
                     
                     <select name="province" class="input-decoration" id= 'province'>
-                        <option value="default"><%= unEvento.province %></option>
+                        <option value="<%= unEvento.province %>"><%= unEvento.province %></option>
                         <option value="CABA">CABA</option>
                         <option value="Buenos Aires">Buenos Aires</option>
                         <option value="Catamarca">Catamarca</option> 
@@ -98,12 +102,12 @@
                         <input class="input-decoration" type="text" placeholder="Direccion" name="adress" value = "<%= unEvento.adress %>">
                         <input class="input-decoration" type="text" placeholder="Lugar- Pista - Club" name="place" value = "<%= unEvento.place %>">
                         <input class="input-decoration" type="text" placeholder="HORARIOS" name="schedules" value = "<%= unEvento.schedules %>">
-                        <label for="Date">Fecha de Inicio</label>
-                        <input type="date" name="startdate" id="startdate" placeholder="Selecciona una fecha">
+                        <label for="Date">Fecha de Inicio</label>            
+                        <input type="date" name="startdate" id="startdate" value ="<%= startDate%>" >
                         <label for="Date">Fecha de FIN</label>
-                        <input type="date" name="finishdate" id="finishdate" placeholder="Selecciona una fecha">
+                        <input type="date" name="finishdate" id="finishdate" value ="<%= finishDate%>">
                         <select name="month" class="input-decoration" id= 'province'> 
-                            <option value="default"><%= unEvento.month %></option>
+                            <option value="<%= unEvento.month %>"><%= unEvento.month %></option>
                             <option value="Enero">Enero</option>
                             <option value="Febrero">Febrero</option>
                             <option value="Marzo">Marzo</option> 
@@ -130,7 +134,7 @@
                         </div>
                     <small id= "user-mesage"></small>
                                    
-                    <button type="submit" class="submit-button">Crear</button>
+                    <button type="submit" class="submit-button">Actualizar</button>
                 
             </form>
 
@@ -138,14 +142,4 @@
     </section>      
 </body>
 
-<script>
-    // Obtener la fecha actual en formato YYYY-MM-DD
-    const currentDate = new Date().toISOString().slice(0, 10);
-  
-    // Establece la fecha actual como el valor inicial y el placeholder
-    document.getElementById("finishdate").value = currentDate;
-    document.getElementById("finishdate").setAttribute("placeholder", currentDate);
-    document.getElementById("startdate").value = currentDate;
-    document.getElementById("startdate").setAttribute("placeholder", currentDate);
-  </script>
 </html>

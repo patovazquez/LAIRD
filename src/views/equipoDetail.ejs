@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/equipo.css">
+    <title>LAIRD</title>
+</head>
+<!-- header usuarios -->
+<%- include('Partials/userHeader') %>
+    <!--fin del header usuarios -->
+    <!-- header main -->
+    <%- include('Partials/mainHeader') %>
+        <!--fin del header main -->
+
+        <body>
+
+            <div class="div-container" id="un-solo-equipo">
+
+                <div class="equipo-card">
+                    <div class="banner">
+
+                        <img src="/images/equipos/<%= equipo.logo %>" id="imgEquipos" alt="imagen equipo">
+
+                    </div>
+
+                    <h2 class="aches"><%- equipo.name %></h2>
+                    <h4 class="aches"> LIGA: <%- equipo.Liga.name %></h4>
+
+                    <div class="div-description">
+                        <p class="description"><%- equipo.description %></p>
+                    </div>
+                    <div class="data-container">
+                        <div class="data-item">
+                            <span class="data-title">Dirección:</span>
+                            <p class="data"><%- equipo.adress %></p>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-title">Ciudad:</span>
+                            <p class="data"><%- equipo.city %></p>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-title">Provincia:</span>
+                            <p class="data"><%- equipo.province %></p>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-title">Días de Entrenamiento:</span>
+                            <p class="data"><%- equipo.training_days %></p>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-title">Contacto:</span>
+                            <p class="data"><%- equipo.contact %></p>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-title">Enlace:</span>
+                            <p class="data"><%- equipo.link %></p>
+                        </div>
+
+                    </div>
+
+                    <span id="integrantes">Integrantes</span>
+
+                    <div class="integrantes">
+                        
+                        <table class="roster">
+                            <thead>
+                                <tr id="titulos">                                    
+                                    <th><i class="fa-solid fa-list-ol"></i><span>Conteo</span></th>
+                                    <th><i class="fa-solid fa-user-tag"></i><span>Derby-Name</span></th>
+                                    <th><i class="fa-solid fa-hashtag"></i><span>Número</span></th>
+                                    <th><i class="fa-solid fa-clock"></i><span>Fecha roster</span></th>
+                                    <th><i class="fa-solid fa-star"></i><span>Roster</span></th>                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% patinadoresFormateados.forEach((patinador, index)=> { %>
+                                    <tr id="filas">
+                                        <td>
+                                            <%= index + 1 %>
+                                        </td>
+                                        <td>
+                                            <%= patinador.derby_name %>
+                                        </td>
+                                        <td>
+                                            <%= patinador.number %>
+                                        </td>
+                                        <% if (patinador.Equipos && patinador.Equipos.length> 0) { %>
+                                            <% const equipo=patinador.Equipos[0]; %>
+                                                <% if (equipo.patinadorEquipo.roster==1) { %>
+                                                    <td>
+                                                        <%= equipo.patinadorEquipo.updated_at %>
+                                                    </td>
+                                                    <% } else { %> %>
+                                                        <td></td>
+                                                        <% } %>
+                                                            <td>
+                                                                <%= equipo.patinadorEquipo.roster ? 'Sí' : '' %>
+                                                            </td>
+
+                                                            <% } else { %>
+                                                                <td>No disponible</td>
+                                                                <td>No</td>
+                                                                <% } %>
+
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </body>
+        <!-- footer-->
+        <%- include('Partials/footer') %>
+            <!--fin del footer -->
+
+</html>

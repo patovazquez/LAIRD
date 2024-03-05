@@ -1,66 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>LAIRD</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/carousel.css' />
-  </head>
 
-  <!-- link js -->
-<script src= "/js/carousel.js" defer></script>
+<head>
+  <title>LAIRD</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/carousel.css' />
+</head>
 
-  <!-- header usuarios -->
+<!-- link js -->
+<script src="/js/carousel.js" defer></script>
+
+<!-- header usuarios -->
 <%- include('Partials/userHeader') %>
-<!--fin del header usuarios -->
+  <!--fin del header usuarios -->
   <!-- header main -->
   <%- include('Partials/mainHeader') %>
-  <!--fin del header main -->
+    <!--fin del header main -->
 
+    <body>
+      
+      <div class="div-container">
+        
 
-<body>   
+      <div id="carousel">
+        <div id="slide-container">
+          <div class="slide" data-slideIndex="0">
+            <div class="slide-banner"> <a href="">LA INFO</a></div>
+            <img src="/images/views/1200frameLAIRD.png">
+          </div>
+          <div class="slide" data-slideIndex="1">
+            <div class="slide-banner"><a href="">PUBLICIDAD</a></div>
+            <img width="1200" height="600" src="/images/views/publiciteBlanco.png">
+          </div>
+          <div class="slide" data-slideIndex="2">
+            <div class="slide-banner"><a href="">PUBLICIDAD</a></div>
+            <img width="1200" height="600" src="/images/views/publiciteAzul.png">
+          </div>
+          <div class="slide" data-slideIndex="3">
+            <div class="slide-banner"> <a href="">PUBLICIDAD</a></div>
+            <img width="1200" height="600" src="/images/views/publiciteBlanco.png">
+          </div>
 
-<div id="carousel">
-  <div id="slide-container">
-    <div class="slide" data-slideIndex="0">
-      <div class="slide-banner"> <a href="">LA INFO</a></div>
-      <img src="/images/views/1200frameLAIRD.png">
+        </div>
+        <div id="back-button" class="arrow back">←</div>
+        <div id="forward-button" class="arrow forward">→</div>
+        <div class="slide-indicators">
+          <div class="slide-indicator active"></div>
+          <div class="slide-indicator"></div>
+          <div class="slide-indicator"></div>
+          <div class="slide-indicator"></div>
+
+        </div>
+      </div>
+      
+      <div>
+        <% if (email) { %>
+          <h1>bienvenido </h1>
+          <span>
+            <%= email %>
+          </span>
+          <% } %>
+
+      </div>
     </div>
-    <div class="slide" data-slideIndex="1">
-      <div class="slide-banner"><a href="">PUBLICIDAD</a></div>
-      <img width="1200" height="600" src="/images/views/publiciteBlanco.png">
-    </div>
-    <div class="slide" data-slideIndex="2">
-      <div class="slide-banner"><a href="">PUBLICIDAD</a></div>
-      <img width="1200" height="600" src="/images/views/publiciteAzul.png">
-    </div>
-    <div class="slide" data-slideIndex="3">
-      <div class="slide-banner"> <a href="">PUBLICIDAD</a></div>
-      <img width="1200" height="600" src="/images/views/publiciteBlanco.png">
-    </div>
-    
-  </div>
-  <div id="back-button" class="arrow back">←</div>
-  <div id="forward-button" class="arrow forward">→</div>
-  <div class="slide-indicators">
-    <div class="slide-indicator active"></div>
-    <div class="slide-indicator"></div>
-    <div class="slide-indicator"></div>
-    <div class="slide-indicator"></div> 
-    
-  </div>
-</div>
+    </body>
+    <!-- footer-->
+    <%- include('Partials/footer') %>
+      <!--fin del footer -->
 
-<div>
-  <% if (email) { %>
-    <h1>bienvenido </h1>
-    <span><%= email %> </span>
-  <% } %>
-  
-</div>
-
-
-
-
-
-  </body>
 </html>

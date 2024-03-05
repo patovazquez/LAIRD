@@ -14,6 +14,14 @@ module.exports = {
        
         res.render('index');
 
-    }
+    },
+    recursos: async (req, res, next) => {       
+
+          
+       
+        res.render('recursos');
+
+    },
+
 
 }

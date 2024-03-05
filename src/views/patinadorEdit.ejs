@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAIRD</title>
+    <!-- link css -->
+    <link rel="stylesheet" href="/stylesheets/forms.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+
+
+<!-- link js -->
+<script src="/js/main.js" defer></script>
+
+
+<body>
+
+    <section class="main-section">
+        <section class="section">
+
+            <div class="title">                
+                <p class='titulos'>Editar Perfil</p>
+                <div class="picture">
+                    <a href="/"> <img src="\images\views\lairdlogotrans.png" alt="logo" class= "logo"></a>
+                 </div> 
+                 <a href="javascript:history.back()"><button class="mi-icono"><i
+                    class="fas fa-arrow-left"></i></button></a>                
+            </div>
+            
+            <form method="POST" class = "input-fields"action="/users/edit/<%= unPatinador.id %>?_method=PUT" enctype="multipart/form-data" id='usersForm'>
+
+                <div class="error_messages">
+                    <% if (typeof(errors) !='undefined' ) { %>
+
+                        <% for( let index=0; index < errors.length; index++ ) { %>
+                            <p>
+                                <%= errors[index].msg %>
+                            </p>
+                            <% } %>
+
+                                <% } %>
+
+                </div>
+
+                <input class="input-decoration" type="email" placeholder="E-mail" name="email" value= "<%= unPatinador.email %>" <% if (typeof(old)
+                    !='undefined' ) { %> value= <%= old.email %>
+                    <%} %>>
+                        <input class="input-decoration" type="password" placeholder="Contraseña" name="password" <% if
+                            (typeof(old) !='undefined' ) { %> value= <%= old.password %>
+                            <%} %>>
+                                <input class="input-decoration" type="password" placeholder="Confirmar contraseña"
+                                    name="passwordCheck" <% if (typeof(old) !='undefined' ) { %> value= <%=
+                                    old.passwordCheck %>
+                                    <%} %>>
+                                        <input class="input-decoration" type="text" placeholder="Derby Name"
+                                            name="derby_name" value= "<%= unPatinador.derby_name %>"<% if (typeof(old) !='undefined' ) { %> value= <%=
+                                            old.derby_name %>
+                                            <%} %>>
+                                            <input class="input-decoration" type="text" placeholder="NUMERO"
+                                            name="number" value= "<%= unPatinador.number %>"<% if (typeof(old) !='undefined' ) { %> value= <%=
+                                            old.number %>
+                                            <%} %>>
+                                                <input class="input-decoration" type="text" placeholder="Pronombres"
+                                                    name="pronoun" value= "<%= unPatinador.pronoun %>"<% if (typeof(old) !='undefined' ) { %> value= <%=
+                                                    old.pronoun %>
+                                                    <%} %>>
+
+                                                        <select name="province" class="input-decoration" id='province'>
+                                                            <option ><%= unPatinador.province %></option>
+                                                            <option value="CABA">CABA</option>
+                                                            <option value="Buenos Aires">Buenos Aires</option>
+                                                            <option value="Catamarca">Catamarca</option>
+                                                            <option value="Chaco">Chaco</option>
+                                                            <option value="Chubut">Chubut</option>
+                                                            <option value="Cordoba">Córdoba</option>
+                                                            <option value="Corrientes">Corrientes</option>
+                                                            <option value="Entre Rios">Entre Ríos</option>
+                                                            <option value="Formosa">Formosa</option>
+                                                            <option value="Jujuy">Jujuy</option>
+                                                            <option value="La Pampa">La Pampa</option>
+                                                            <option value="La Rioja">La Rioja</option>
+                                                            <option value="Mendoza">Mendoza</option>
+                                                            <option value="Misiones">Misiones</option>
+                                                            <option value="Neuquen">Neuquén</option>
+                                                            <option value="Rio Negro">Río Negro</option>
+                                                            <option value="Salta">Salta</option>
+                                                            <option value="San Juan">San Juan</option>
+                                                            <option value="San Luis">San Luis</option>
+                                                            <option value="Santa Cruz">Santa Cruz</option>
+                                                            <option value="Santa Fe">Santa Fe</option>
+                                                            <option value="Santiago Del Estero">Santiago del Estero
+                                                            </option>
+                                                            <option value="Tierra del Fuego">Tierra del Fuego</option>
+                                                            <option value="Tucuman">Tucumán</option>                                                    
+                                                        </select>
+                                                        <div class="check-patinador">
+                                                            <h4>Selecciona tu relación con el Derby</h4>
+                                                            <input type="checkbox" name="play" value="si" <%= unPatinador.play === 'si' ? 'checked' : '' %> onchange="updateValue(this)" /> ¿Jugas?
+                                                            <input type="checkbox" name="ref" value="si" <%= unPatinador.ref === 'si' ? 'checked' : '' %> onchange="updateValue(this)" /> ¿Refereas?
+                                                            <input type="checkbox" name="coach" value="si" <%= unPatinador.coach === 'si' ? 'checked' : '' %> onchange="updateValue(this)" /> ¿Sos cuerpo técnico?
+                                                            <input type="checkbox" name="volun" value="si" <%= unPatinador.volun === 'si' ? 'checked' : '' %> onchange="updateValue(this)" /> ¿Voluntario / otros roles?
+   
+                                                        </div>
+                                                        
+                                                        <div class="avatar">
+                                                            <label for="" class="label_decoration">Avatar</label>
+                                                            <input class="img_field" type="file" name="avatar_img" id=""
+                                                                enctype="multipart/form-data">
+                                                                
+                                                        </div>
+                                                        <small id="user-mesage"></small>
+
+                                                        <button type="submit" class="submit-button">Actualizar</button>
+
+            </form>
+
+        </section>
+    </section>
+</body>
+<script>
+    function updateValue(checkbox) {
+    checkbox.value = checkbox.checked ? "si" : "no";
+}
+</script>
+
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -28,63 +28,63 @@
 
 
                 <% mesesOrdenados.forEach(mes=> { %>
-                    
+
 
                     <% if (mes.eventos.length> 0) { %>
-                <div class="eventosDiv">
-                        <h3>
-                            <%= mes.nombre %>
-                        </h3>
+                        <div class="eventosDiv">
+                            <h3>
+                                <%= mes.nombre %>
+                            </h3>
 
-                        <% mes.eventos.forEach(evento=> { %>
+                            <% mes.eventos.forEach(evento=> { %>
 
-                            <article>
-                                <div class="fechas">
-                                    <span class="span-ligas" id="fecha">
-                                        <%= evento.startdate %> AL <%= evento.finishdate %>
-                                    </span>
-                                </div>
-                                <a href="eventos/detail/<%= evento.id %>">
-                                    <div class="logo-articulo">
-                                        <img id="myImgliga" src="/images/eventos/<%= evento.poster %>" class="imgLigas"
-                                            alt="Poster Evento">
+                                <article>
+                                    <div class="fechas">
+                                        <span class="span-ligas" id="fecha">
+                                            <%= evento.startdate %> AL <%= evento.finishdate %>
+                                        </span>
                                     </div>
-                                </a>
-                                <div class="data">
-                                    <span class="span-ligas" id="name">
-                                        <%= evento.name %>
-                                    </span>
-                                    <span class="span-ligas">
-                                        Provincia: <%= evento.province %>
-                                    </span>
-                                    <span class="span-ligas">
-                                        Tipo de Evento: <%= evento.tipe %>
-                                    </span>
-                                    <span class="span-ligas">
-                                        Organiza: <%= evento.Liga.name %>
-                                    </span>
+                                    <a href="eventos/detail/<%= evento.id %>">
+                                        <div class="logo-articulo">
+                                            <img id="myImgliga" src="/images/eventos/<%= evento.poster %>"
+                                                class="imgLigas" alt="Poster Evento">
+                                        </div>
+                                    </a>
+                                    <div class="data">
+                                        <span class="span-ligas" id="name">
+                                            <%= evento.name %>
+                                        </span>
+                                        <span class="span-ligas">
+                                            Provincia: <%= evento.province %>
+                                        </span>
+                                        <span class="span-ligas">
+                                            Tipo de Evento: <%= evento.tipe %>
+                                        </span>
+                                        <span class="span-ligas">
+                                            Organiza: <%= evento.Liga.name %>
+                                        </span>
 
 
-                                    <div class="botones">
-                                        <button class="button-all-ligas">Mas INFO</button>
+                                        <div class="botones">
+                                            <button class="button-all-ligas">Mas INFO</button>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                            </article>
-                        <% }) %>
 
-                    <% } else { %>
-                        <div class="noEventosDiv">
-                        <h3>
-                            <%= mes.nombre %>
-                        </h3>
-                         <span class="span-no-evento">No hay eventos registrados</span>
+                                </article>
+                                <% }) %>
+
+                                    <% } else { %>
+                                        <div class="noEventosDiv">
+                                            <h3>
+                                                <%= mes.nombre %>
+                                            </h3>
+                                            <span class="span-no-evento">No hay eventos registrados</span>
+                                        </div>
+                                        <% } %>
+
                         </div>
-                <% } %>                             
-                                
-                </div>
 
-                <% }) %>
+                        <% }) %>
 
 
 
@@ -95,5 +95,8 @@
 
 
         </body>
+        <!-- footer-->
+        <%- include('Partials/footer') %>
+            <!--fin del footer -->
 
 </html>

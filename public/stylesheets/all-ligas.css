@@ -22,6 +22,7 @@ h1 {
     margin: 16px;
     flex-wrap: wrap;
     justify-content: center;
+    flex:1;
 }
 
 .grid-container article {
@@ -37,6 +38,9 @@ h1 {
     box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
     overflow-wrap: anywhere;
     transition: all 0.3s ease 0s;
+    min-height: 300px; 
+    justify-content: center;
+
 
 }
 
@@ -45,14 +49,16 @@ h1 {
 }
 
 .logo-articulo {
-    max-height: 260px;
+    max-height: 230px;
     height: 62vw;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .imgLigas {
-    max-width: 250px;
-    width: 62vw;
+    max-width: 100%; 
+    width: 230px; 
+    max-height: 100%; 
+    height: auto; 
     padding: 5px;
 
 }
@@ -137,8 +143,7 @@ p{
 }
 
 @media (min-width:1024px) {
-    .grid-container {
-        margin: 20px;
+    .grid-container {        
         grid-template-columns: repeat(4, 1fr);
     }
 }

@@ -15,6 +15,8 @@ var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
 var ligasRouter = require('./src/routes/ligas');
 var eventosRouter = require('./src/routes/eventos');
+var equiposRouter = require('./src/routes/equipos');
+var oficialesRouter = require('./src/routes/oficiales');
 
 var app = express();
 
@@ -42,6 +44,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/ligas', ligasRouter);
 app.use('/eventos', eventosRouter);
+app.use('/equipos', equiposRouter);
+app.use('/oficiales', oficialesRouter);
 
 
 

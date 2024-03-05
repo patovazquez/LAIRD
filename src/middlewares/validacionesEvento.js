@@ -18,7 +18,7 @@ module.exports = {
         
         
 
-       /* body('liga_img')
+       /* body('liga_img') LA IMAGEN OPCIONAL PARA LOS EVENTOS SE ASIGNA LA IMAGEN PROXIMAMENTE
         .custom((value,{req}) => req.file) //Si no existe req.file la verificacion no va a pasar
         .withMessage("La imagen no es valida o no se ha elegido ninguna"),*/
 

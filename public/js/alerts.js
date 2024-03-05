@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         deleteForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Evita el envío del formulario por defecto
             
-            const confirmation = window.confirm('Desactivar una liga significa que todo su contenido dejará de ser visible en el sitio. Pero siempre podrás acceder a tu contenido con tu usuario y contraseña. incluso podras reactivar la Liga cuando lo desees');
+            const confirmation = window.confirm('Desactivar significa que todo su contenido dejará de ser visible en el sitio. Pero siempre podrás acceder a tu contenido con tu usuario y contraseña. incluso podras reactivar la cuenta cuando lo desees');
 
             if (confirmation) {
                 // Si el usuario confirmó, procede a enviar el formulario

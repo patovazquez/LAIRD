@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/equipos.css">
+    <title>LAIRD</title>
+</head>
+<!-- header usuarios -->
+<%- include('Partials/userHeader') %>
+    <!--fin del header usuarios -->
+    <!-- header main -->
+    <%- include('Partials/mainHeader') %>
+        <!--fin del header main -->
+
+        <body>
+            <!-- barra busqueda equipos -->
+            <%- include('Partials/equiposSearchBar') %>
+                <!--fin barra busqueda equipo -->
+
+
+                </div>
+                <section class="grid-container">
+                    <% equipos.forEach(equipo=> { %>
+
+                        <article class="equipos">
+
+                            <img src="/images/equipos/<%= equipo.logo %>" id="imgEquipos" alt="imagen equipo">
+
+                            <div class="data">
+                                <span class="span-equipos" id="name">
+                                    <%= equipo.name %>
+                                </span>
+                                <span class="span-equipos" id="ligaName">
+                                    LIGA: <%= equipo.Liga.name %>
+                                </span>
+                                <span class="span-equipos">
+                                    Cat: <%= equipo.category %>
+                                </span>
+                            </div>
+                            <div class="data">
+                                <span class="span-equipos">
+                                    Provincia: <%= equipo.province %>
+                                </span>
+                                <div class="botones">
+                                    <a href="/equipos/detail/<%= equipo.id %>">
+                                        <button class="button-all-ligas">MAS INFO</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+
+                            </div>
+                        </article>
+                        <% }); %>
+                            <% if ( equipos.length==0) { %>
+                                <div class="col-12">
+                                    <h3 style="color: rgb(78, 22, 12);">No hay equipos que coincidan con su búsqueda
+                                    </h3>
+                                </div>
+                                <% } else { }%>
+
+
+                </section>
+
+                </div>
+
+        </body>
+        <!-- footer-->
+        <%- include('Partials/footer') %>
+            <!--fin del footer -->
+
+</html>

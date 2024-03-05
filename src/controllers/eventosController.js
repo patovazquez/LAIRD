@@ -5,6 +5,7 @@ const { Op, where } = require('sequelize');
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
 const fechaActual = new Date();
+const moment = require('moment');
 
 
 module.exports = {
@@ -100,7 +101,7 @@ module.exports = {
     const defaultPoster = 'proximamente.jpg'; // Reemplaza el poster con la imagne prox
 
     // Verifica si req.file está definido
-    const poster = req.file ? req.file.filename : defaultPoster;
+    const poster = req.file ? req.file.filename : defaultPoster; 
 
 
     if (!errors.isEmpty()) {
@@ -145,10 +146,14 @@ module.exports = {
   edit: async (req, res) => {
 
     try {
-      
-      const unEvento = await db.Evento.findByPk(req.params.id)
 
-      res.render('eventoEdit', { unEvento: unEvento })
+      const unEvento = await db.Evento.findByPk(req.params.id, {include: {all: true}})
+      
+      const startDate = moment(unEvento.startdate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+      const finishDate = moment(unEvento.finishdate, 'DD/MM/YYYY').format('YYYY-MM-DD');     
+
+      res.render('eventoEdit', { unEvento: unEvento, startDate: startDate, finishDate: finishDate })
+
 
     } catch (error) {
       res.send(error);
@@ -156,9 +161,64 @@ module.exports = {
   },
 
   update: async (req, res) => {
+    const errors = validationResult(req);
+    const unEvento = await db.Evento.findByPk(req.params.id);
+    let imagePath = path.join(__dirname, '../../public/images/eventos/' + unEvento.poster);
+
+    if (!errors.isEmpty()) {
+
+      let old = {
+        ...req.body,
+        id: req.params.id
+      }
+      return res.render('eventoEdit', { errors: errors.array(), unEvento: old })
+    } else {
+
+
+      let editedEvento = {
+        ...req.body,
+      }
+      if (req.file) {
+        editedEvento.poster = req.file.filename;
+        // Elimino imagen subida 
+        if (fs.existsSync(imagePath) && path.basename(imagePath) !== "proximamente.jpg") {
+          fs.unlinkSync(imagePath)
+        }
+
+      } else if (req.body.oldImage) {
+        editedEvento.poster = req.body.oldImage;
+      }
+
+      try {
+        await db.Evento.update(editedEvento, { where: { id: req.params.id } })
+
+      } catch (error) {
+        res.send(error);
+      }
+
+      res.redirect('/ligas/mypanel');
+    }
+  },
+  destroy: async (req, res) => {
+    let existingEvento = await db.Evento.findByPk(req.params.id);
+    let imagePath = path.join(__dirname, '../../public/images/eventos/' + existingEvento.poster);
+
+    try {
+      await db.Evento.destroy({ where: { id: req.params.id, } })
+
+      if (fs.existsSync(imagePath) && path.basename(imagePath) !== "proximamente.jpg") {
+        fs.unlinkSync(imagePath)
+      }
+
+
+    } catch (error) {
+      res.send(error);
+      return;
+    }
+    
 
     res.redirect('/ligas/mypanel');
-    }
 
+  },
 
 }

@@ -40,6 +40,8 @@ body{
     width: 250px;
     display: flex;
     flex-direction: column;
+    align-items: start;
+    margin-left: 10px;
 }
 
 .picture{
@@ -173,6 +175,23 @@ hr { width:80%;
 
  }
 
+ .check-patinador{
+    
+    margin: 15px;
+ }
+ .mi-icono {
+    font-size: 1.2rem;
+    /* Cambiar el tamaño del icono */
+    color: rgb(39, 190, 236);
+    /* Cambiar el color del icono */
+    padding: 3px;
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;    
+    border-color: rgb(39, 190, 236);
+    border-radius: 3px;
+    background-color: white;
+  }
 
 @media (max-width: 500px){
     .section{
